@@ -40,7 +40,26 @@ agregarProductoLista(carpa);
 //Visualizo el array
 console.log(verListaProductos());
 
-//Creo funcion para aumentar precio de todos los prodcutos
+
+let tabla = document.getElementById("items");
+
+function agregarItemHtml(item){
+    let row = document.createElement("tr");
+    row.innerHTML = `<tr><th>${item.nombre}</th><th>${item.precio}</th><th>${item.imagen}</th><th>${item.descripcion}</th><th>${item.categoria}</th><th>${item.stock}</th></tr>`;
+    tabla.append(row);
+}
+
+productos.forEach((item) => {
+    agregarItemHtml(item)
+});
+
+
+
+
+
+
+
+/*Creo funcion para aumentar precio de todos los prodcutos
 let aumento = parseInt(prompt("Ingrese el aumento"));
 aumento/=100;
 console.log(aumento);
@@ -133,4 +152,4 @@ if (eliminar >= 0) {
     clientes.splice(eliminar, 1);
 }
 
-console.log(verListaClientes());
+console.log(verListaClientes());*/
