@@ -1,10 +1,38 @@
+.btn-primary {
+    color: #333;
+    background-color: #0dfda0;
+    border-color: #0dfda0;
+}
+.btn-primary:hover {
+    color: #333;
+	background: linear-gradient(-45deg, #00b3d3, #10cc48, #bacf00, #d523d5);
+    border-color: #0dfda0;
+}
+
+.btn-primary:focus {
+    color: #333;
+	background: linear-gradient(-45deg, #00b3d3, #10cc48, #bacf00, #d523d5);
+    border-color: #0dfda0;
+}
+
+
+.btn-outline:hover {
+    color: #333;
+	background: linear-gradient(-45deg, #00b3d3, #10cc48, #bacf00, #d523d5);
+}
+
+
+.btn-outline{
+	color: #0dfda0;
+    background-color: #333;
+    border-color: #0dfda0;
+}
 .nav-back {
 	background: linear-gradient(-45deg, #00b3d3, #10cc48, #bacf00, #d523d5);
 	background-size: 400% 400%;
 	animation: gradient 10s ease infinite;
     height: 7px;
 }
-
 
 
 @keyframes gradient {
