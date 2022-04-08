@@ -86,17 +86,18 @@ switch (producto) {
     default:
         alert("Ese producto no existe")   
         break; 
-}
+} */
 
 
 //CLIENTES
 
 class Persona {
-    constructor(nombre, apellido, edad, mail){
+    constructor(nombre, apellido, edad, mail, telefono){
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.mail = mail;
+        this.mail = telefono;
     }
 }
 
@@ -106,14 +107,18 @@ const agregarClienteLista = (persona) => {
     clientes.push(persona)
 }
 
+const getNombre = document.getElementById("nombre");
+const getApellido = document.getElementById("apellido");
+const getEdad = document.getElementById("edad");
+const getMail = document.getElementById("mail");
+const getTelefono = document.getElementById("telefono");
 
+let formCliente = document.getElementById("formulario");
+formCliente.addEventListener("submit", crearCliente);
 
-function crearCliente(){
-    let nombre = prompt("Ingrese su nombre");
-    let apellido = prompt("Ingrese su apellido");
-    let edad = parseInt(prompt("Ingrese su edad")) ;
-    let mail = prompt("Ingrese su mail");
-    const cliente = new Persona(nombre, apellido, edad, mail);
+function crearCliente(e){
+    e.preventDefault();
+    const cliente = new Persona(getNombre.value, getApellido.value, getEdad.value, getMail.value);
     agregarClienteLista(cliente);
 }
 
@@ -122,12 +127,6 @@ agregarClienteLista(cliente1);
 const cliente2 = new Persona("Juan", "Zucchi", 45, "juancito@gmail.com");
 agregarClienteLista(cliente2);
 
-var valida= prompt("¿Quiere crear un unsuario? S/N")
-if(valida=="S"){
-    crearCliente();
-}else{
-    alert("Será la proxima")
-}
 
 const verListaClientes = () => {
     return clientes;
@@ -152,4 +151,4 @@ if (eliminar >= 0) {
     clientes.splice(eliminar, 1);
 }
 
-console.log(verListaClientes());*/
+console.log(verListaClientes());
