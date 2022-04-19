@@ -41,12 +41,28 @@ agregarProductoLista(carpa);
 console.log(verListaProductos());
 
 
-let tabla = document.getElementById("items");
+let contenedor = document.getElementById("items");
 
-function agregarItemHtml(item){
+/*function agregarItemHtml(item){
     let row = document.createElement("tr");
     row.innerHTML = `<tr><th>${item.nombre}</th><th>${item.precio}</th><th>${item.imagen}</th><th>${item.descripcion}</th><th>${item.categoria}</th><th>${item.stock}</th></tr>`;
     tabla.append(row);
+}*/
+
+function agregarItemHtml(item){
+    let div = document.createElement("div");
+    div.innerHTML = ` <div class="col-3">
+    <div class="card h-100">
+      <img src="img/portadagrowingup.png" class="card-img-top" alt="...">
+      <div class="card-body" >
+        <h5 class="card-title" id="nombre">${item.nombre}</h5>
+        <p class="card-text">${item.descripcion}</p>
+        <p class="card-text" id="precio">${item.precio}</p>
+        <button class="btn btn-primary" id="agregar">Agregar al carrito</button>
+      </div>
+    </div> 
+  </div>`;
+    contenedor.append(div);
 }
 
 productos.forEach((item) => {
@@ -142,13 +158,130 @@ function buscarPersona(nombre, clientes) {
     }
     return i;
 }
-
+/*
 let eliminar = buscarPersona(
     prompt("Ingrese el nombre del cliente que quiere eliminar"),
     clientes
 );
 if (eliminar >= 0) {
     clientes.splice(eliminar, 1);
-}
+}*/
 
 console.log(verListaClientes());
+
+/*let carrito = [];
+
+const tabla = document.getElementById("items");
+const agregar = document.querySelector("#agregar");
+const aumentar = document.querySelector("#aumentar");
+const ordenar = document.getElementById("ordenar");
+const vaciar = document.getElementById("vaciar");
+
+carrito.push(new Item("Monitor", 1, 40000));
+carrito.push(new Item("Mouse", 2, 5000));
+carrito.push(new Item("Parlante", 4, 15000));
+carrito.push(new Item("Estabilizador de tension", 1, 5000));*/
+
+function newRow(producto) {
+    const row = document.createElement("tr");
+    const pos = productos.indexOf(producto);
+    let aux = document.createElement("th");
+    aux.innerText = producto.nombre;
+    row.append(aux);
+
+    aux = document.createElement("th");
+    aux.innerText = item.cantidad;
+    const suma = document.createElement("button");
+    suma.className = "btn btn-primary";
+    suma.innerText = "+";
+    const resta = document.createElement("button");
+    resta.className = "btn btn-primary";
+    resta.innerText = "-";
+
+    suma.onclick = () => {
+        productos[pos].cantidad++;
+        listadoUpdate();
+    };
+    resta.onclick = () => {
+        if (carrito[pos].cantidad > 0) {
+            carrito[pos].cantidad--;
+            listadoUpdate();
+        }
+    };
+
+    aux.append(resta);
+    aux.append(suma);
+
+    row.append(aux);
+    aux = document.createElement("th");
+    aux.innerText = producto.precio;
+    row.append(aux);
+    const eliminar = document.createElement("button");
+    eliminar.className = "btn btn-danger";
+    eliminar.innerText = "Eliminar";
+    eliminar.onclick = () => {
+        carrito.splice(pos, 1);
+        listadoUpdate();
+    };
+    const th = document.createElement("th");
+    th.append(eliminar);
+    row.append(th);
+    tabla.append(row);
+    const total = document.getElementById("total");
+    total.innerText = carrito.reduce(
+        (total, item) => total + item.precio * item.cantidad,
+        0
+    );
+}
+
+function listadoUpdate() {
+    tabla.innerHTML = "";
+    productos.forEach((producto) => {
+        newRow(producto);
+    });
+    total.innerText = productos.reduce(
+        (total, item) => total + item.precio * item.cantidad,
+        0
+    );
+}
+
+function getNuevoItem() {
+    const nombre = document.getElementById("nombre").value;
+    const cantidad = 1;
+    const precio = parseFloat(document.getElementById("precio").value);
+    return new Item(nombre, cantidad, precio);
+}
+
+let agregar = document.getElementById("agregar");
+agregar.onclick = () => {
+    const item = getNuevoItem();
+    productos.push(item);
+    newRow(item);
+};
+
+aumentar.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const valor = document.getElementById("aumento").value;
+    if (valor > 0) {
+        productos = productos.map((item) => {
+            return {
+                nombre: item.nombre,
+                cantidad: item.cantidad,
+                precio: item.precio * valor,
+            };
+        });
+        listadoUpdate();
+    }
+});
+
+ordenar.onclick = () => {
+    personas.sort((actual, siguiente) => actual.precio - siguiente.precio);
+    listadoUpdate();
+};
+
+vaciar.onclick = () => {
+    personas = [];
+    listadoUpdate();
+};
+
+listadoUpdate();

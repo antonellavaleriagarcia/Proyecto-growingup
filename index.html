@@ -138,107 +138,60 @@
   </div>
   <br>
 
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th>Nombre</th>
-        <th>Precio</th>
-        <th>Imagen</th>
-        <th>Descripcion</th>
-        <th>Categoria</th>
-        <th>Stock</th>
-      </tr>
-    </thead>
-    <tbody id="items" class="table-striped">
-    </tbody>
-  </table>
+  
   
   
   <!-- #categorias -->
   
-  <div class="container">
+  <div class="container" class="row row-cols-1 row-cols-md-4 g-4">
     
-    <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div >
       <h2 class="align-self-center">Podes encontrar todos estos productos</h2>
       <br>
-      <div class="col">
-        <div class="card h-100">
-          <img src="img/portadagrowingup.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <button class="btn btn-primary">Ver más luces</button>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="img/portadagrowingup.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a short card.</p>
-            <button class="btn btn-primary">Ver más luces</button>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="img/portadagrowingup.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            <button class="btn btn-primary">Ver más luces</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-      <div class="col">
-        <div class="card h-100">
-          <img src="img/portadagrowingup.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <button class="btn btn-primary">Ver más luces</button>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="img/portadagrowingup.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a short card.</p>
-            <button class="btn btn-primary">Ver más luces</button>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="img/portadagrowingup.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            <button class="btn btn-primary">Ver más luces</button>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="img/portadagrowingup.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            <button class="btn btn-primary">Ver más luces</button>
-          </div>
-        </div>
-      </div>
+     
+              <div class="col" id="items">
+               
+              </div>  
+        
     </div>
     <br>
   </div>
   <br>
   <br>
+
+
+  <div class="container m-3 row">
+    <div class="container m-1">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Operacion</th>
+                </tr>
+            </thead>
+            <tbody id="items">
+            </tbody>
+            <tfoot class="thead-dark">
+                <tr>
+                    <th>Total: </th>
+                    <th></th>
+                    <th id="total"></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="container m-1">
+        <button id="ordenar" class="btn btn-primary">
+            Ordenar
+        </button>
+        <button id="vaciar" class="btn btn-primary">
+            Vaciar
+        </button>
+    </div>
+</div>
   <!-- #contacto -->
   
   <div class="contact-back" id="contacto">
