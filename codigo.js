@@ -1,110 +1,3 @@
-//PRODUCTOS
-//Clase producto
-class Producto {
-
-    constructor(nombre, precio, imagen, descripcion, categoria, stock){
-        this.nombre = nombre;
-        this.precio = precio;
-        this.imagen = imagen;
-        this.descripcion = descripcion;
-        this.categoria = categoria;
-        this.stock = stock;
-    }
-
-    precioPorCantidad(){
-        let cantidad = parseInt(prompt("Ingrese la cantidad de productos que quiere comprar")) 
-        this.precio = this.precio*cantidad
-        return this.precio
-    }
-
-}
-//Creo array para productos
-const productos = []
-//Creo funcion para agregar objetos al array
-const agregarProductoLista = (objeto) => {
-    productos.push(objeto);
-}
-//Creo funcion para visualizar array
-const verListaProductos = () => {
-    return productos;
-}
-
-//Creo productos
-const amazonia=new Producto ("amazonia", 600, "imagen", "Poetenciador Radicular, bio-estimulante orgánico que promueve la formación de raíces fuertes y sanas, tallos vigorosos. Mejora la asimilacion de nutrientes, mejora las condiciones del suelo, promueve la formación de micro-organismo beneficiosos para el suelo y para las plantas", "Fertilizantes", 6)
-const cultivante=new Producto("cultivante", 2000, "imagen", "Sustrato Premium con el agregado óptimo de fibra de coco, que ofrece a las raíces un mejor acceso al aire y los nutrientes, para que crezcan más sanas y fuertes.", "Sustratos & Macetas", 4)
-const carpa=new Producto("carpa", 1000, "imagen", "Especificaciones técnicas:• Carpa Probox suiza 100 x 100 x 200 cm.• Posee mylar 420D, 100% aprueba de luz.• Doble cierre reforzado.• Estructura sólida, varillas y base doble.• Tubos de refrigeración incorporados. • Caja cerrada.", "Indoor", 8)
-//Agrego productos al array
-agregarProductoLista(amazonia);
-agregarProductoLista(cultivante);
-agregarProductoLista(carpa);
-//Visualizo el array
-console.log(verListaProductos());
-
-
-let contenedor = document.getElementById("items");
-
-/*function agregarItemHtml(item){
-    let row = document.createElement("tr");
-    row.innerHTML = `<tr><th>${item.nombre}</th><th>${item.precio}</th><th>${item.imagen}</th><th>${item.descripcion}</th><th>${item.categoria}</th><th>${item.stock}</th></tr>`;
-    tabla.append(row);
-}*/
-
-function agregarItemHtml(item){
-    let div = document.createElement("div");
-    div.innerHTML = ` <div class="col-3">
-    <div class="card h-100">
-      <img src="img/portadagrowingup.png" class="card-img-top" alt="...">
-      <div class="card-body" >
-        <h5 class="card-title" id="nombre">${item.nombre}</h5>
-        <p class="card-text">${item.descripcion}</p>
-        <p class="card-text" id="precio">${item.precio}</p>
-        <button class="btn btn-primary" id="agregar">Agregar al carrito</button>
-      </div>
-    </div> 
-  </div>`;
-    contenedor.append(div);
-}
-
-productos.forEach((item) => {
-    agregarItemHtml(item)
-});
-
-
-
-
-
-
-
-/*Creo funcion para aumentar precio de todos los prodcutos
-let aumento = parseInt(prompt("Ingrese el aumento"));
-aumento/=100;
-console.log(aumento);
-const actualizado = productos.map(item => {
-    return item.precio + item.precio * aumento
-})
-
-//Nuevo array con precios actualizados
-console.log(actualizado);
-
-//Pequeño menu
-let producto= prompt("¿Que producto quiere comprar?"+amazonia.nombre+" ,"+cultivante.nombre+" ,"+carpa.nombre)
-
-switch (producto) {
-    case "amazonia":
-        alert(amazonia.precioPorCantidad());
-        break;
-    case "cultivante": 
-        alert(cultivante.precioPorCantidad());    
-        break;
-    case "carpa":
-        alert(carpa.precioPorCantidad());
-        break;
-    default:
-        alert("Ese producto no existe")   
-        break; 
-} */
-
-
 //CLIENTES
 
 class Persona {
@@ -169,10 +62,100 @@ if (eliminar >= 0) {
 
 console.log(verListaClientes());
 
+//PRODUCTOS
+//Clase producto
+class Producto {
+
+    constructor(nombre, precio, imagen, descripcion, categoria, stock){
+        this.nombre = nombre;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.stock = stock;
+    }
+
+    precioPorCantidad(){
+        let cantidad = parseInt(prompt("Ingrese la cantidad de productos que quiere comprar")) 
+        this.precio = this.precio*cantidad
+        return this.precio
+    }
+
+}
+//Creo array para productos
+const productos = []
+//Creo funcion para agregar objetos al array
+const agregarProductoLista = (objeto) => {
+    productos.push(objeto);
+}
+//Creo funcion para visualizar array
+const verListaProductos = () => {
+    return productos;
+}
+
+//Creo productos
+const amazonia=new Producto ("amazonia", 600, "imagen", "Poetenciador Radicular, bio-estimulante orgánico que promueve la formación de raíces fuertes y sanas, tallos vigorosos. Mejora la asimilacion de nutrientes, mejora las condiciones del suelo, promueve la formación de micro-organismo beneficiosos para el suelo y para las plantas", "Fertilizantes", 6)
+const cultivante=new Producto("cultivante", 2000, "imagen", "Sustrato Premium con el agregado óptimo de fibra de coco, que ofrece a las raíces un mejor acceso al aire y los nutrientes, para que crezcan más sanas y fuertes.", "Sustratos & Macetas", 4)
+const carpa=new Producto("carpa", 1000, "imagen", "Especificaciones técnicas:• Carpa Probox suiza 100 x 100 x 200 cm.• Posee mylar 420D, 100% aprueba de luz.• Doble cierre reforzado.• Estructura sólida, varillas y base doble.• Tubos de refrigeración incorporados. • Caja cerrada.", "Indoor", 8)
+//Agrego productos al array
+agregarProductoLista(amazonia);
+agregarProductoLista(cultivante);
+agregarProductoLista(carpa);
+//Visualizo el array
+console.log(verListaProductos());
+
+class Elegidos {
+    constructor(nombre, precio){
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+}
+
+const elegidos = []
+
+const agregarElegidos = (objeto) => {
+    productos.push(objeto);
+}
+
+let contenedor = document.getElementById("items");
+
+function agregarCarrito(item){
+    let row = document.createElement("tr");
+    row.innerHTML = `<tr><th>${item.nombre}</th><th>${item.precio}</th></tr>`;
+    tabla.append(row);
+    agregarElegidos(item);
+}
+
+function agregarItemHtml(items){
+    items.forEach((item) => {
+        const div = document.createElement("div");
+        div.innerHTML = ` <div class="col-3">
+        <div class="card h-100">
+        <img src="img/portadagrowingup.png" class="card-img-top" alt="...">
+        <div class="card-body" >
+            <h5 class="card-title" id="nombre">${item.nombre}</h5>
+            <p class="card-text">${item.descripcion}</p>
+            <p class="card-text" id="precio">${item.precio}</p>
+            <button class="btn btn-primary" id="agregar${item.nombre}">Agregar al carrito</button>
+        </div>
+        </div> 
+        </div>`;
+        let botonAgregar = document.getElementById(`agregar${item.nombre}`);
+        botonAgregar.onclick = agregarCarrito();
+        contenedor.append(div);
+    });
+    
+}
+
+agregarItemHtml(productos);
+
+
+
+
+
 /*let carrito = [];
 
 const tabla = document.getElementById("items");
-const agregar = document.querySelector("#agregar");
 const aumentar = document.querySelector("#aumentar");
 const ordenar = document.getElementById("ordenar");
 const vaciar = document.getElementById("vaciar");
@@ -182,9 +165,9 @@ carrito.push(new Item("Mouse", 2, 5000));
 carrito.push(new Item("Parlante", 4, 15000));
 carrito.push(new Item("Estabilizador de tension", 1, 5000));*/
 
-function newRow(producto) {
+/*function newRow(producto) {
     const row = document.createElement("tr");
-    const pos = productos.indexOf(producto);
+    const pos = carrito.indexOf(producto);
     let aux = document.createElement("th");
     aux.innerText = producto.nombre;
     row.append(aux);
@@ -199,7 +182,7 @@ function newRow(producto) {
     resta.innerText = "-";
 
     suma.onclick = () => {
-        productos[pos].cantidad++;
+        carrito[pos].cantidad++;
         listadoUpdate();
     };
     resta.onclick = () => {
@@ -236,10 +219,10 @@ function newRow(producto) {
 
 function listadoUpdate() {
     tabla.innerHTML = "";
-    productos.forEach((producto) => {
+    carrito.forEach((producto) => {
         newRow(producto);
     });
-    total.innerText = productos.reduce(
+    total.innerText = carrito.reduce(
         (total, item) => total + item.precio * item.cantidad,
         0
     );
@@ -255,15 +238,15 @@ function getNuevoItem() {
 let agregar = document.getElementById("agregar");
 agregar.onclick = () => {
     const item = getNuevoItem();
-    productos.push(item);
+    carrito.push(item);
     newRow(item);
-};
+};  
 
-aumentar.addEventListener("submit", (e) => {
+/*aumentar.addEventListener("submit", (e) => {
     e.preventDefault();
     const valor = document.getElementById("aumento").value;
     if (valor > 0) {
-        productos = productos.map((item) => {
+        carrito = carrito.map((item) => {
             return {
                 nombre: item.nombre,
                 cantidad: item.cantidad,
@@ -275,13 +258,13 @@ aumentar.addEventListener("submit", (e) => {
 });
 
 ordenar.onclick = () => {
-    personas.sort((actual, siguiente) => actual.precio - siguiente.precio);
+    carrito.sort((actual, siguiente) => actual.precio - siguiente.precio);
     listadoUpdate();
 };
 
 vaciar.onclick = () => {
-    personas = [];
+    carrito = [];
     listadoUpdate();
 };
 
-listadoUpdate();
+listadoUpdate();*/
