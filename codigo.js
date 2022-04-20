@@ -119,12 +119,6 @@ const agregarElegidos = (objeto) => {
 
 let contenedor = document.getElementById("items");
 
-function agregarCarrito(item){
-    let row = document.createElement("tr");
-    row.innerHTML = `<tr><th>${item.nombre}</th><th>${item.precio}</th></tr>`;
-    tabla.append(row);
-    agregarElegidos(item);
-}
 
 function agregarItemHtml(items){
     items.forEach((item) => {
@@ -140,8 +134,14 @@ function agregarItemHtml(items){
         </div>
         </div> 
         </div>`;
+        contenedor.append(div);
         let botonAgregar = document.getElementById(`agregar${item.nombre}`);
-        botonAgregar.onclick = agregarCarrito();
+        botonAgregar.onclick = () => {
+            let row = document.createElement("tr");
+            row.innerHTML = `<tr><th>${item.nombre}</th><th>${item.precio}</th></tr>`;
+            tabla.append(row);
+        }
+        agregarElegidos(`agregar${item.nombre}`);
         contenedor.append(div);
     });
     
