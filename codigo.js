@@ -66,21 +66,22 @@ console.log(verListaClientes());
 //Clase producto
 class Producto {
 
-    constructor(nombre, precio, imagen, descripcion, categoria, stock){
+    constructor(nombre, precio, imagen, descripcion, categoria, stock, cantida){
         this.nombre = nombre;
         this.precio = precio;
         this.imagen = imagen;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.stock = stock;
+        this.cantida = cantida;
     }
-
+/*
     precioPorCantidad(){
         let cantidad = parseInt(prompt("Ingrese la cantidad de productos que quiere comprar")) 
         this.precio = this.precio*cantidad
         return this.precio
     }
-
+*/
 }
 //Creo array para productos
 const productos = []
@@ -88,15 +89,16 @@ const productos = []
 const agregarProductoLista = (objeto) => {
     productos.push(objeto);
 }
+
 //Creo funcion para visualizar array
 const verListaProductos = () => {
     return productos;
 }
 
 //Creo productos
-const amazonia=new Producto ("amazonia", 600, "imagen", "Poetenciador Radicular, bio-estimulante orgánico que promueve la formación de raíces fuertes y sanas, tallos vigorosos. Mejora la asimilacion de nutrientes, mejora las condiciones del suelo, promueve la formación de micro-organismo beneficiosos para el suelo y para las plantas", "Fertilizantes", 6)
-const cultivante=new Producto("cultivante", 2000, "imagen", "Sustrato Premium con el agregado óptimo de fibra de coco, que ofrece a las raíces un mejor acceso al aire y los nutrientes, para que crezcan más sanas y fuertes.", "Sustratos & Macetas", 4)
-const carpa=new Producto("carpa", 1000, "imagen", "Especificaciones técnicas:• Carpa Probox suiza 100 x 100 x 200 cm.• Posee mylar 420D, 100% aprueba de luz.• Doble cierre reforzado.• Estructura sólida, varillas y base doble.• Tubos de refrigeración incorporados. • Caja cerrada.", "Indoor", 8)
+const amazonia=new Producto ("amazonia", 600, "imagen", "Poetenciador Radicular, bio-estimulante orgánico que promueve la formación de raíces fuertes y sanas, tallos vigorosos. Mejora la asimilacion de nutrientes, mejora las condiciones del suelo, promueve la formación de micro-organismo beneficiosos para el suelo y para las plantas", "Fertilizantes", 6,1)
+const cultivante=new Producto("cultivante", 2000, "imagen", "Sustrato Premium con el agregado óptimo de fibra de coco, que ofrece a las raíces un mejor acceso al aire y los nutrientes, para que crezcan más sanas y fuertes.", "Sustratos & Macetas", 4,1)
+const carpa=new Producto("carpa", 1000, "imagen", "Especificaciones técnicas:• Carpa Probox suiza 100 x 100 x 200 cm.• Posee mylar 420D, 100% aprueba de luz.• Doble cierre reforzado.• Estructura sólida, varillas y base doble.• Tubos de refrigeración incorporados. • Caja cerrada.", "Indoor", 8, 1)
 //Agrego productos al array
 agregarProductoLista(amazonia);
 agregarProductoLista(cultivante);
@@ -105,21 +107,46 @@ agregarProductoLista(carpa);
 console.log(verListaProductos());
 
 class Elegidos {
-    constructor(nombre, precio){
+    constructor(nombre, precio, cantida){
         this.nombre = nombre;
         this.precio = precio;
+        this.cantida = 1;
     }
 }
 
 const elegidos = []
 
-const agregarElegidos = (objeto) => {
-    productos.push(objeto);
-}
 
 let contenedor = document.getElementById("items");
+/*
+function newItem(item){
+    const pos = elegidos.indexOf(item);
+    let row = document.createElement("tr");
+    row.innerHTML = `<tr><th>${item.nombre}</th><th>${item.precio}</th><th>${item.cantida}</th></tr>`;
+    tcuerpo.append(row);
 
+    const eliminar = document.createElement("button");
+    eliminar.className = "btn btn-danger";
+    eliminar.innerText = "Eliminar";
+    eliminar.onclick = () => {
+        elegidos.splice(pos, 1);
+        listadoUpdate();
+    };
+    
+    const th = document.createElement("th");
+    th.append(eliminar);
+    row.append(th);
+    tcuerpo.append(row);
 
+    const total = document.getElementById("total");
+    total.innerText = elegidos.reduce(
+        (total, item) => total + item.precio * item.cantida,
+        0
+    );
+
+    
+}
+*/
 function agregarItemHtml(items){
     items.forEach((item) => {
         const div = document.createElement("div");
@@ -137,21 +164,85 @@ function agregarItemHtml(items){
         contenedor.append(div);
         let botonAgregar = document.getElementById(`agregar${item.nombre}`);
         botonAgregar.onclick = () => {
+            aux = new Elegidos (item.nombre, item.precio, item.cantida);
+            elegidos.push(aux);
             let row = document.createElement("tr");
-            row.innerHTML = `<tr><th>${item.nombre}</th><th>${item.precio}</th></tr>`;
-            tabla.append(row);
+
+            const pos = elegidos.indexOf(aux);
+            let compra = document.createElement("th")
+            
+            
+            row.innerHTML = `<tr><th>${aux.nombre}</th><th>${aux.precio}</th></tr>`;
+            
+
+            const suma = document.createElement("button");
+            suma.className = "btn btn-primary";
+            suma.innerText = "+";
+            const resta = document.createElement("button");
+            resta.className = "btn btn-primary";
+            resta.innerText = "-";
+
+            suma.onclick = () => {
+                elegidos[pos].cantida++;               
+            };
+            
+            resta.onclick = () => {
+                if (elegidos[pos].cantida > 0) {
+                    elegidos[pos].cantida--;
+                }
+            };
+            compra.innerText = aux.cantida;
+            compra.append(resta);
+            compra.append(suma);
+            row.append(compra);
+            compra = document.createElement("th");
+            compra.innerText = aux.precio;
+            row.append(compra);
+
+            const eliminar = document.createElement("button");
+            eliminar.className = "btn btn-danger";
+            eliminar.innerText = "Eliminar";
+            
+            eliminar.onclick = () => {
+                elegidos.splice(pos, 1);
+            };
+            const th = document.createElement("th");
+            th.append(eliminar);
+            row.append(th);
+            tcuerpo.append(row);
+
+            const total = document.getElementById("total");
+            total.innerText = elegidos.reduce(
+                (total, aux) => total + aux.precio * aux.cantida,
+                0
+            );
+            
         }
-        agregarElegidos(`agregar${item.nombre}`);
+        
         contenedor.append(div);
+        
+        
     });
     
 }
 
 agregarItemHtml(productos);
 
+function listadoUpdate() {
+    tcuerpo.innerHTML = "";
+    elegidos.forEach((item) => {
+        (item);
+    });
+    total.innerText = elegidos.reduce(
+        (total, item) => total + item.precio * item.cantida,
+        0
+    );
+}
 
-
-
+const verListaElegidos = () => {
+    return elegidos;
+}
+console.log(verListaElegidos());
 
 /*let carrito = [];
 
