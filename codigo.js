@@ -118,21 +118,68 @@ const elegidos = []
 
 
 let contenedor = document.getElementById("items");
-/*
+
 function newItem(item){
-    const pos = elegidos.indexOf(item);
+    aux = new Elegidos (item.nombre, item.precio, item.cantidat);
+    
+
+    if(elegidos.find(x => x.nombre === aux.nombre)){
+            
+            const num = document.getElementById("num");
+            num.innerText = elegidos.reduce(
+            (num, aux) => aux.cantida + 1,
+            0
+    );
+                
+    }else{
+    elegidos.push(aux);    
+
+    const pos = elegidos.indexOf(aux);
+
     let row = document.createElement("tr");
-    row.innerHTML = `<tr><th>${item.nombre}</th><th>${item.precio}</th><th>${item.cantida}</th></tr>`;
-    tcuerpo.append(row);
+
+    row.innerHTML = `<tr><th>${aux.nombre}</th><th>${aux.precio}</th><th id="num">${aux.cantida}</th></tr>`;
+    
+
+    let compra = document.createElement("th")
+
+    const suma = document.createElement("button");
+    suma.className = "btn btn-primary";
+    suma.innerText = "+";
+
+    const resta = document.createElement("button");
+    resta.className = "btn btn-primary";
+    resta.innerText = "-";
+
+    suma.onclick = () => {
+        elegidos[pos].trae++;    
+        listadoUpdate();           
+    };
+    
+    resta.onclick = () => {
+        if (elegidos[pos].trae > 0) {
+            elegidos[pos].trae--;
+            listadoUpdate();
+        }
+    };
+  
+        
+
+    compra.append(resta);
+    compra.append(suma);
+    row.append(compra);
+    
 
     const eliminar = document.createElement("button");
     eliminar.className = "btn btn-danger";
     eliminar.innerText = "Eliminar";
+    
     eliminar.onclick = () => {
         elegidos.splice(pos, 1);
         listadoUpdate();
     };
-    
+
+
     const th = document.createElement("th");
     th.append(eliminar);
     row.append(th);
@@ -140,17 +187,17 @@ function newItem(item){
 
     const total = document.getElementById("total");
     total.innerText = elegidos.reduce(
-        (total, item) => total + item.precio * item.cantida,
+        (total, aux) => total + aux.precio * aux.cantida,
         0
     );
-
-    
 }
-*/
+}          
+
 function agregarItemHtml(items){
     items.forEach((item) => {
         const div = document.createElement("div");
-        div.innerHTML = ` <div class="col-3">
+        div.className = "col-4"
+        div.innerHTML = ` <div>
         <div class="card h-100">
         <img src="img/portadagrowingup.png" class="card-img-top" alt="...">
         <div class="card-body" >
@@ -164,74 +211,19 @@ function agregarItemHtml(items){
         contenedor.append(div);
         let botonAgregar = document.getElementById(`agregar${item.nombre}`);
         botonAgregar.onclick = () => {
-            aux = new Elegidos (item.nombre, item.precio, item.cantida);
-            elegidos.push(aux);
-            let row = document.createElement("tr");
-
-            const pos = elegidos.indexOf(aux);
-            let compra = document.createElement("th")
-            
-            
-            row.innerHTML = `<tr><th>${aux.nombre}</th><th>${aux.precio}</th></tr>`;
-            
-
-            const suma = document.createElement("button");
-            suma.className = "btn btn-primary";
-            suma.innerText = "+";
-            const resta = document.createElement("button");
-            resta.className = "btn btn-primary";
-            resta.innerText = "-";
-
-            suma.onclick = () => {
-                elegidos[pos].cantida++;               
-            };
-            
-            resta.onclick = () => {
-                if (elegidos[pos].cantida > 0) {
-                    elegidos[pos].cantida--;
-                }
-            };
-            compra.innerText = aux.cantida;
-            compra.append(resta);
-            compra.append(suma);
-            row.append(compra);
-            compra = document.createElement("th");
-            compra.innerText = aux.precio;
-            row.append(compra);
-
-            const eliminar = document.createElement("button");
-            eliminar.className = "btn btn-danger";
-            eliminar.innerText = "Eliminar";
-            
-            eliminar.onclick = () => {
-                elegidos.splice(pos, 1);
-            };
-            const th = document.createElement("th");
-            th.append(eliminar);
-            row.append(th);
-            tcuerpo.append(row);
-
-            const total = document.getElementById("total");
-            total.innerText = elegidos.reduce(
-                (total, aux) => total + aux.precio * aux.cantida,
-                0
-            );
-            
+            newItem(item); 
         }
-        
-        contenedor.append(div);
-        
-        
     });
-    
+  
 }
+
 
 agregarItemHtml(productos);
 
 function listadoUpdate() {
     tcuerpo.innerHTML = "";
     elegidos.forEach((item) => {
-        (item);
+       newItem(item);
     });
     total.innerText = elegidos.reduce(
         (total, item) => total + item.precio * item.cantida,
@@ -244,118 +236,4 @@ const verListaElegidos = () => {
 }
 console.log(verListaElegidos());
 
-/*let carrito = [];
-
-const tabla = document.getElementById("items");
-const aumentar = document.querySelector("#aumentar");
-const ordenar = document.getElementById("ordenar");
-const vaciar = document.getElementById("vaciar");
-
-carrito.push(new Item("Monitor", 1, 40000));
-carrito.push(new Item("Mouse", 2, 5000));
-carrito.push(new Item("Parlante", 4, 15000));
-carrito.push(new Item("Estabilizador de tension", 1, 5000));*/
-
-/*function newRow(producto) {
-    const row = document.createElement("tr");
-    const pos = carrito.indexOf(producto);
-    let aux = document.createElement("th");
-    aux.innerText = producto.nombre;
-    row.append(aux);
-
-    aux = document.createElement("th");
-    aux.innerText = item.cantidad;
-    const suma = document.createElement("button");
-    suma.className = "btn btn-primary";
-    suma.innerText = "+";
-    const resta = document.createElement("button");
-    resta.className = "btn btn-primary";
-    resta.innerText = "-";
-
-    suma.onclick = () => {
-        carrito[pos].cantidad++;
-        listadoUpdate();
-    };
-    resta.onclick = () => {
-        if (carrito[pos].cantidad > 0) {
-            carrito[pos].cantidad--;
-            listadoUpdate();
-        }
-    };
-
-    aux.append(resta);
-    aux.append(suma);
-
-    row.append(aux);
-    aux = document.createElement("th");
-    aux.innerText = producto.precio;
-    row.append(aux);
-    const eliminar = document.createElement("button");
-    eliminar.className = "btn btn-danger";
-    eliminar.innerText = "Eliminar";
-    eliminar.onclick = () => {
-        carrito.splice(pos, 1);
-        listadoUpdate();
-    };
-    const th = document.createElement("th");
-    th.append(eliminar);
-    row.append(th);
-    tabla.append(row);
-    const total = document.getElementById("total");
-    total.innerText = carrito.reduce(
-        (total, item) => total + item.precio * item.cantidad,
-        0
-    );
-}
-
-function listadoUpdate() {
-    tabla.innerHTML = "";
-    carrito.forEach((producto) => {
-        newRow(producto);
-    });
-    total.innerText = carrito.reduce(
-        (total, item) => total + item.precio * item.cantidad,
-        0
-    );
-}
-
-function getNuevoItem() {
-    const nombre = document.getElementById("nombre").value;
-    const cantidad = 1;
-    const precio = parseFloat(document.getElementById("precio").value);
-    return new Item(nombre, cantidad, precio);
-}
-
-let agregar = document.getElementById("agregar");
-agregar.onclick = () => {
-    const item = getNuevoItem();
-    carrito.push(item);
-    newRow(item);
-};  
-
-/*aumentar.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const valor = document.getElementById("aumento").value;
-    if (valor > 0) {
-        carrito = carrito.map((item) => {
-            return {
-                nombre: item.nombre,
-                cantidad: item.cantidad,
-                precio: item.precio * valor,
-            };
-        });
-        listadoUpdate();
-    }
-});
-
-ordenar.onclick = () => {
-    carrito.sort((actual, siguiente) => actual.precio - siguiente.precio);
-    listadoUpdate();
-};
-
-vaciar.onclick = () => {
-    carrito = [];
-    listadoUpdate();
-};
-
-listadoUpdate();*/
+listadoUpdate();
