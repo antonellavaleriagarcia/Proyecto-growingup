@@ -106,92 +106,43 @@ agregarProductoLista(carpa);
 //Visualizo el array
 console.log(verListaProductos());
 
-class Elegidos {
-    constructor(nombre, precio, cantida){
-        this.nombre = nombre;
-        this.precio = precio;
-        this.cantida = 1;
-    }
-}
 
-const elegidos = []
+
+const carrito = []
+
+if (localStorage.getItem('carrito') !== null) {
+    
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [] ;
+    carrito.push(...json.parse('carrito'))
+}
 
 
 let contenedor = document.getElementById("items");
 
 function newItem(item){
-    aux = new Elegidos (item.nombre, item.precio, item.cantidat);
     
 
-    if(elegidos.find(x => x.nombre === aux.nombre)){
+    
+        if(carrito.find(i => i.nombre === item.nombre)){
             
-            const num = document.getElementById("num");
-            num.innerText = elegidos.reduce(
-            (num, aux) => aux.cantida + 1,
-            0
-    );
-                
-    }else{
-    elegidos.push(aux);    
-
-    const pos = elegidos.indexOf(aux);
-
-    let row = document.createElement("tr");
-
-    row.innerHTML = `<tr><th>${aux.nombre}</th><th>${aux.precio}</th><th id="num">${aux.cantida}</th></tr>`;
-    
-
-    let compra = document.createElement("th")
-
-    const suma = document.createElement("button");
-    suma.className = "btn btn-primary";
-    suma.innerText = "+";
-
-    const resta = document.createElement("button");
-    resta.className = "btn btn-primary";
-    resta.innerText = "-";
-
-    suma.onclick = () => {
-        elegidos[pos].trae++;    
-        listadoUpdate();           
-    };
-    
-    resta.onclick = () => {
-        if (elegidos[pos].trae > 0) {
-            elegidos[pos].trae--;
-            listadoUpdate();
+           carrito.forEach(x => {
+               (x.nombre==item.nombre) ? x.cantidad += 1 : false
+           })
+           console.log(carrito);
+           listadoUpdate(carrito);
+                    
+        }else{
+            item.cantidad=1;
+            carrito.push(item);
+            console.log(carrito);
+            listadoUpdate(carrito);
         }
-    };
-  
-        
-
-    compra.append(resta);
-    compra.append(suma);
-    row.append(compra);
-    
-
-    const eliminar = document.createElement("button");
-    eliminar.className = "btn btn-danger";
-    eliminar.innerText = "Eliminar";
-    
-    eliminar.onclick = () => {
-        elegidos.splice(pos, 1);
-        listadoUpdate();
-    };
-
-
-    const th = document.createElement("th");
-    th.append(eliminar);
-    row.append(th);
-    tcuerpo.append(row);
-
-    const total = document.getElementById("total");
-    total.innerText = elegidos.reduce(
-        (total, aux) => total + aux.precio * aux.cantida,
-        0
-    );
 }
-}          
+  
+    
+
+
+         
 
 function agregarItemHtml(items){
     items.forEach((item) => {
@@ -219,21 +170,23 @@ function agregarItemHtml(items){
 
 
 agregarItemHtml(productos);
+const totalPlata = document.getElementById("total");
 
-function listadoUpdate() {
+function listadoUpdate(array) {
     tcuerpo.innerHTML = "";
-    elegidos.forEach((item) => {
-       newItem(item);
+    array.forEach((item) => {
+       const fila = document.createElement("tr")
+       fila.innerHTML= `<th>${item.nombre}</th><th>${item.cantidad}</th><th>${item.precio}</th>` 
+       tcuerpo.append(fila)
     });
-    total.innerText = elegidos.reduce(
-        (total, item) => total + item.precio * item.cantida,
+    totalPlata.innerText = array.reduce(
+        (total, item) => total += item.precio * item.cantidad,
         0
     );
+    const guardarCarrito = (item) => {
+        
+        localStorage.setItem('carrito', JSON.stringify(item));
+    } 
 }
 
-const verListaElegidos = () => {
-    return elegidos;
-}
-console.log(verListaElegidos());
 
-listadoUpdate();
