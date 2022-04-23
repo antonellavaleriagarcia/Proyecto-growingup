@@ -109,12 +109,70 @@ console.log(verListaProductos());
 
 
 const carrito = []
+const totalPlata = document.getElementById("total");
 
-if (localStorage.getItem('carrito') !== null) {
+if (localStorage.getItem("carrito") !== null) {
     
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [] ;
-    carrito.push(...json.parse('carrito'))
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    carrito.push(JSON.parse(localStorage.getItem("carrito")) || [])
+    carrito.forEach((item) => {
+        const fila = document.createElement("tr")
+        fila.innerHTML= `<th>${item.nombre}</th><th>${item.precio}</th><th>${item.cantidad}</th>` 
+        tcuerpo.append(fila)
+
+       const pos = carrito.indexOf(item);
+
+       
+       const suma = document.createElement("button");
+       suma.className = "btn btn-primary";
+       suma.innerText = "+";
+       const resta = document.createElement("button");
+       resta.className = "btn btn-primary";
+       resta.innerText = "-";
+       
+       const thh=document.createElement("th");
+       thh.append(suma)
+       thh.append(resta)
+       fila.append(thh)
+       tcuerpo.append(fila)
+
+       suma.onclick = () => {
+           carrito.forEach(x => {
+                (x.nombre==item.nombre) ? x.cantidad += 1 : false
+            })
+        listadoUpdate(carrito);
+       };
+       resta.onclick = () => {
+        if(item.cantidad>=1){
+        carrito.forEach(x => {
+         (x.nombre==item.nombre) ? x.cantidad -= 1 : false
+        })
+        listadoUpdate(carrito);}
+    }
+       
+   
+       const eliminar = document.createElement("button");
+       eliminar.className = "btn btn-danger";
+       eliminar.innerText = "Eliminar";
+       eliminar.onclick = () => {
+           carrito.forEach(x => {
+            (x.nombre==item.nombre) ? carrito.splice(pos, 1) : false
+           })
+           listadoUpdate(carrito);}
+       
+       const th = document.createElement("th");
+       th.append(eliminar);
+       fila.append(th);
+       tcuerpo.append(fila);
+      
+    });
+     totalPlata.innerText = carrito.reduce(
+         (total, item) => total += item.precio * item.cantidad,
+         0
+     );
 }
+
+
 
 
 let contenedor = document.getElementById("items");
@@ -170,23 +228,67 @@ function agregarItemHtml(items){
 
 
 agregarItemHtml(productos);
-const totalPlata = document.getElementById("total");
+
 
 function listadoUpdate(array) {
     tcuerpo.innerHTML = "";
     array.forEach((item) => {
        const fila = document.createElement("tr")
-       fila.innerHTML= `<th>${item.nombre}</th><th>${item.cantidad}</th><th>${item.precio}</th>` 
+       fila.innerHTML= `<th>${item.nombre}</th><th>${item.precio}</th><th>${item.cantidad}</th>` 
        tcuerpo.append(fila)
+
+       const pos = carrito.indexOf(item);
+       
+       const suma = document.createElement("button");
+       suma.className = "btn btn-primary";
+       suma.innerText = "+";
+       const resta = document.createElement("button");
+       resta.className = "btn btn-primary";
+       resta.innerText = "-";
+       
+       const thh=document.createElement("th");
+       thh.append(suma)
+       thh.append(resta)
+       fila.append(thh)
+       tcuerpo.append(fila)
+
+       suma.onclick = () => {
+        carrito.forEach(x => {
+             (x.nombre==item.nombre) ? x.cantidad += 1 : false
+         })
+         listadoUpdate(carrito);
+    };
+        resta.onclick = () => {
+        if(item.cantidad>=1){
+        carrito.forEach(x => {
+         (x.nombre==item.nombre) ? x.cantidad -= 1 : false
+        })
+        listadoUpdate(carrito);}
+    };
+   
+       
+   
+       const eliminar = document.createElement("button");
+       eliminar.className = "btn btn-danger";
+       eliminar.innerText = "Eliminar";
+       eliminar.onclick = () => {
+        carrito.forEach(x => {
+         (x.nombre==item.nombre) ? carrito.splice(pos, 1) : false
+        })
+        listadoUpdate(carrito);}
+       const th = document.createElement("th");
+       th.append(eliminar);
+       fila.append(th);
+       tcuerpo.append(fila);
     });
     totalPlata.innerText = array.reduce(
         (total, item) => total += item.precio * item.cantidad,
         0
     );
-    const guardarCarrito = (item) => {
-        
-        localStorage.setItem('carrito', JSON.stringify(item));
+    const guardarCarrito = (array) => {
+        localStorage.setItem("carrito", JSON.stringify(array));
     } 
+    guardarCarrito(array);
 }
 
 
