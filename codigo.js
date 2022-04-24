@@ -108,10 +108,10 @@ console.log(verListaProductos());
 
 
 
-const carrito = []
+
 const totalPlata = document.getElementById("total");
 
-if (localStorage.getItem("carrito") !== null) {
+
     
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     carrito.push(JSON.parse(localStorage.getItem("carrito")) || [])
@@ -170,7 +170,7 @@ if (localStorage.getItem("carrito") !== null) {
          (total, item) => total += item.precio * item.cantidad,
          0
      );
-}
+
 
 
 
@@ -180,7 +180,6 @@ let contenedor = document.getElementById("items");
 function newItem(item){
     
 
-    
         if(carrito.find(i => i.nombre === item.nombre)){
             
            carrito.forEach(x => {
@@ -198,9 +197,6 @@ function newItem(item){
 }
   
     
-
-
-         
 
 function agregarItemHtml(items){
     items.forEach((item) => {
@@ -236,9 +232,7 @@ function listadoUpdate(array) {
        const fila = document.createElement("tr")
        fila.innerHTML= `<th>${item.nombre}</th><th>${item.precio}</th><th>${item.cantidad}</th>` 
        tcuerpo.append(fila)
-
        const pos = carrito.indexOf(item);
-       
        const suma = document.createElement("button");
        suma.className = "btn btn-primary";
        suma.innerText = "+";
@@ -291,4 +285,9 @@ function listadoUpdate(array) {
     guardarCarrito(array);
 }
 
-
+vaciar.onclick = (array) => {
+    carrito = [];
+    localStorage.setItem("carrito", JSON.stringify(array))
+    listadoUpdate(array);
+    
+};
