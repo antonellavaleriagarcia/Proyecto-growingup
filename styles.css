@@ -69,3 +69,30 @@
     height: auto;
     background-position: bottom;
 }
+
+.back-blog{
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background: linear-gradient(180deg, #212529, #00ffb2);
+    height: auto;
+    background-position: bottom;
+}
+.news-card{
+    padding-bottom: 30px;
+}
+
+.back-header-blog{
+    font-size: 22px;
+    color: white;
+    font-weight: bolder;
+    background-color: #00b3d3;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    height: 100px;
+    text-align: center;
+    display: absolute;
+}
+
+img.card-img-top {
+    max-height: 350px;
+}

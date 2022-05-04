@@ -379,5 +379,3 @@ vaciar.onclick = (array) => {
     });
     
 };
-
-        
