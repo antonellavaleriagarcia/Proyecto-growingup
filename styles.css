@@ -32,6 +32,10 @@
 	background-size: 400% 400%;
 	animation: gradient 10s ease infinite;
     height: 7px;
+    height: 7px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 
@@ -80,7 +84,19 @@
 .news-card{
     padding-bottom: 30px;
 }
-
+.altoimagen {
+    height: 250px;
+    width: auto;
+}
+.tamaño {
+    margin-left: 50px;
+}
+.margen {
+    margin-top: 30px;
+}
+.card{
+    margin-bottom: 30px;
+}
 .back-header-blog{
     font-size: 22px;
     color: white;
@@ -95,4 +111,13 @@
 
 img.card-img-top {
     max-height: 350px;
+}
+.carrito{
+
+    height: auto;
+    width: 670px;
+    margin-top: 1.125rem    ;
+}
+.compras {
+    margin-right: 20px;
 }

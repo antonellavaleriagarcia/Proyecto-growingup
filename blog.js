@@ -26,5 +26,5 @@ fetch("http://localhost:5500/datos.json")
             </div>`;
             noticias.append(div);
         })
-    }, 2000)
+    }, 100)
     } );

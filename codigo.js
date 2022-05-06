@@ -90,7 +90,7 @@ recordarUsuario(clientesJS);
 
 
 const usuarioini = document.getElementById("Usuario");
-const contra = document.getElementById("contrasenia");
+const contra = document.getElementById("contrase");
 
 
 
@@ -100,7 +100,7 @@ let iniciar = document.getElementById("formularioIniciar");
 iniciar.addEventListener("submit", e => {
     e.preventDefault()
     const usuin= usuarioini.value
-    const contrain = contrase.value
+    const contrain = contra.value
     
     const recordar = new Usu(usuin, contrain);
     guardar(recordar);
@@ -130,14 +130,13 @@ console.log(verListaClientes());
 //Clase producto
 class Producto {
 
-    constructor(nombre, precio, imagen, descripcion, categoria, stock, cantida){
+    constructor(nombre, precio, imagen, descripcion, categoria, stock){
         this.nombre = nombre;
         this.precio = precio;
         this.imagen = imagen;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.stock = stock;
-        this.cantida = cantida;
     }
 /*
     precioPorCantidad(){
@@ -160,13 +159,29 @@ const verListaProductos = () => {
 }
 
 //Creo productos
-const amazonia=new Producto ("amazonia", 600, "imagen", "Poetenciador Radicular, bio-estimulante orgánico que promueve la formación de raíces fuertes y sanas, tallos vigorosos. Mejora la asimilacion de nutrientes, mejora las condiciones del suelo, promueve la formación de micro-organismo beneficiosos para el suelo y para las plantas", "Fertilizantes", 6,1)
-const cultivante=new Producto("cultivante", 2000, "imagen", "Sustrato Premium con el agregado óptimo de fibra de coco, que ofrece a las raíces un mejor acceso al aire y los nutrientes, para que crezcan más sanas y fuertes.", "Sustratos & Macetas", 4,1)
-const carpa=new Producto("carpa", 1000, "imagen", "Especificaciones técnicas:• Carpa Probox suiza 100 x 100 x 200 cm.• Posee mylar 420D, 100% aprueba de luz.• Doble cierre reforzado.• Estructura sólida, varillas y base doble.• Tubos de refrigeración incorporados. • Caja cerrada.", "Indoor", 8, 1)
+const amazonia=new Producto ("amazonia", 600, "img/amazonia.jpg", "Poetenciador Radicular, bio-estimulante orgánico que promueve la formación de raíces fuertes y sanas, tallos vigorosos. Mejora la asimilacion de nutrientes, mejora las condiciones del suelo, promueve la formación de micro-organismo beneficiosos para el suelo y para las plantas", "Fertilizantes", 6)
+const cultivante=new Producto("cultivante", 2000, "img/coco.webp", "Sustrato Premium con el agregado óptimo de fibra de coco, que ofrece a las raíces un mejor acceso al aire y los nutrientes, para que crezcan más sanas y fuertes.", "Sustratos & Macetas", 4)
+const carpa=new Producto("carpa", 1000, "img/carpa.png", "Especificaciones técnicas:• Carpa Probox suiza 100 x 100 x 200 cm.• Posee mylar 420D, 100% aprueba de luz.• Doble cierre reforzado.• Estructura sólida, varillas y base doble.• Tubos de refrigeración incorporados. • Caja cerrada.", "Indoor", 8)
+const maceta=new Producto ("maceta", 950, "img/maceta.jpg", "Sistema de guias internas que evitan estrangulacion y genera una autopoda aerea de tus raices, logrando un desarrollo explosivo. Su exclusivo sistema de drenaje, no solo evita exceso de humedad, sino que te permite olvidarte de usar leca en tus plantas. Medidas Boca: 22 x 22cm Alto: 34 cm Base: 14 x 14cm", "Sustratos & Macetas", 10)
+const feeding=new Producto("feeding", 1950, "img/feeding.jpg", "Alchimia os presenta la versión 125gr del abono Powder Feeding Hybrids de Green House, con ratio NPK de 15-7-22, idóneo para todo el ciclo de cultivo de las variedades de marihuana híbridos Indica - Sativa. Este abono mineral soluble asegura que nuestras plantas disponen de todos los nutrientes que necesitan para un crecimiento fuerte y una floración explosiva. Solo bastará diluir 0.5 hasta 2 gramos de Powder Feeding Hybrids por cada litro de agua, según la etapa del desarrollo de nuestras plantas. Características de G", "Sustratos & Macetas", 5)
+const cooler = new Producto("cooler", 2600, "img/cooler.jpg","Descripción Turbina de 120x120mm con rodamiento.  Carcasa de aluminio con paletas plásticas. Salida con chicote de cable de aproximadamente 15 centímetros Soplador / Turbina / Cooler / FAN de 120mmx120mmx38mm Caracteristicas: Dimensiones: 120x120x25mm", "Indoor", 4)
+const balanza= new Producto("balanza", 1500, "img/balanza.jpg", "CARACTERISTICAS: UNIDADES DE PESAJE: Gramos / Onza / DWT. CAPACIDAD MAXIMA: 500 gramos. PRECISION: 0,1 gramo MEDIDAS: 12,00 cm. x 6,20 cm. x 2,00 cm. SISTEMA DE FRENO SIMPLE.", "Accesorios", 8)
+const estaca = new Producto("estaca", 450, "img/estaca.png", "Estaca de riego por goteo. La misma permite colocar cualquier botella de PVC común con pico de 1/2. Pueden ser botellas de 500 cc hasta 2 litros. Tiene regulador de caudal del riego por goteo, puede ser lento, normal, rápido y muy rápido. Muy fácil de usar e instalar. Ideal para macetas o huerta.", "Accesorios", 4)
+const amazing = new Producto("amazing", 2700, "img/amazing.png", "ADITIVO DE SILICIO PARA EL RENDIMIENTO VEGETAL ALIEN SKIN ofrece los beneficios del sílice otorgando a tus plantas resistencia al estrés y un aumento de la producción y el rendimiento. Benéfico en cultivos hidropónicos, coco o sustrato. Es un potenciador del crecimiento que pude ser usado junto con cualquier fertilizante base. El silcio es el segundo elemento más abundante de la corteza terrestre, su aporte proporciona troncos más fuertes, y una mejor captura de la luz, lo que se traduce en cogollos más densos, de mayor peso y tamaño.", "Fertilizantes", 5)
+const azteca= new Producto("azteca", 1650, "img/azteca.jpg", "Compuesto liquido a base de Bacillius y bacterias, formulado específicamente para potenciar el desarrollo radicular y crecimiento de las plantas. Producción explosiva de raíces, mayor resistencia a la sequía. Aumenta el rendimiento. Fija el nitrógeno atmosférico. Hace viable la disolución de fósforo y potasio.", "Fertilizantes", 3)
+
 //Agrego productos al array
 agregarProductoLista(amazonia);
 agregarProductoLista(cultivante);
 agregarProductoLista(carpa);
+agregarProductoLista(maceta);
+agregarProductoLista(feeding);
+agregarProductoLista(cooler);
+agregarProductoLista(balanza);
+agregarProductoLista(estaca);
+agregarProductoLista(amazing);
+agregarProductoLista(azteca);
+
 //Visualizo el array
 console.log(verListaProductos());
 
@@ -178,7 +193,6 @@ const totalPlata = document.getElementById("total");
 
     
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    carrito.push(JSON.parse(localStorage.getItem("carrito")) || []);
     carrito.forEach((item) => {
         const fila = document.createElement("tr")
         fila.innerHTML= `<th>${item.nombre}</th><th>${item.precio}</th><th>${item.cantidad}</th>` 
@@ -273,17 +287,18 @@ function newItem(item){
 function agregarItemHtml(items){
     items.forEach((item) => {
         const div = document.createElement("div");
-        div.className = "col-4"
+        div.className = "col-3"
         div.innerHTML = ` <div>
         <div class="card h-100">
-        <img src="img/portadagrowingup.png" class="card-img-top" alt="...">
+        <img src="${item.imagen}" class="card-img-top altoimagen" alt="...">
         <div class="card-body" >
             <h5 class="card-title" id="nombre">${item.nombre}</h5>
-            <p class="card-text">${item.descripcion}</p>
             <p class="card-text" id="precio">${item.precio}</p>
-            <button class="btn btn-primary" id="agregar${item.nombre}">Agregar al carrito</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#colapsar${item.nombre}" aria-expanded="false" aria-controls="collapseExample">Ver más</button>
+            <button class="btn btn-primary tamaño" id="agregar${item.nombre}">Comprar</button>
+            <div class="card-text collapse" id="colapsar${item.nombre}"><p class="margen">${item.descripcion}</p></div>
         </div>
-        </div> 
+        </div>    
         </div>`;
         contenedor.append(div);
         let botonAgregar = document.getElementById(`agregar${item.nombre}`);
@@ -357,10 +372,9 @@ function listadoUpdate(array) {
     guardarCarrito(array);
 }
 
-vaciar.onclick = (array) => {
+vaciar.onclick = () => {
     swal ({
         title: "Esta seguro que desea vaciar el carrito?",
-        text: "Once deleted, you will not be able to recover this imaginary file!",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -368,8 +382,9 @@ vaciar.onclick = (array) => {
     .then((willDelete) => {
     if (willDelete) {
         carrito = [];
-        localStorage.setItem("carrito", JSON.stringify(array))
-        listadoUpdate(array);  
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+        listadoUpdate(carrito); 
+        totalPlata.innerText = "0";
         swal("Su carrito ha sido vaciado", {
         icon: "success",
         });

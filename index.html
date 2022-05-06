@@ -12,7 +12,7 @@
 </head>
 <body>
   <!-- #navbar -->  
-  <nav class="navbar navbar-expand-lg bg-dark">
+  <nav class="navbar navbar-expand-lg bg-dark fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,14 +30,43 @@
             <a class="nav-link" href="blog.html"><i class="fa-solid fa-blog"></i>   Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html#contacto"><i class="fa-solid fa-address-book"></i>   Contacto</a>
+            <a class="nav-link" href="index.html#contacto"><i class="fa-solid fa-address-book"></i>Contacto</a>
           </li>
 
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Sustratos, Fertilizantes, Iluminación" aria-label="Search">
-          <button class="btn btn-outline me-2" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
+        <div class="btn-group">
+          <button type="button" id="dropdownMenuClickable" class="btn btn-primary dropdown-toggle compras" data-bs-auto-close="false" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end carrito" aria-labelledby="dropdownMenuClickable">
+            <div class="container m-3 row">
+              <table class="table table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                      <th>Nombre</th>
+                      <th>Precio</th>
+                      <th> Cantidad</th>
+                  </tr>
+                </thead>
+                <tbody id="tcuerpo">
+                </tbody>
+                <tfoot class="thead-dark">
+                    <tr>
+                      <th>Total:</th>
+                      <th></th>
+                      <th id="total"></th>
+                      <th></th>
+                    </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div class="container m-1">
+              <button id="vaciar" class="btn btn-primary">
+                  Vaciar
+              </button>
+            </div>
+          </div>
+        </div>
         <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-user"></i>
@@ -128,9 +157,10 @@
         </div>
       </div>
     </div>
+    <div class="nav-back">
+    </div>
   </nav>
-  <div class="nav-back">
-  </div>
+  
   <!-- #carousel -->
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
@@ -190,34 +220,6 @@
   </div>
   <br>
   <br>
-
-
-<div class="container m-3 row">
-  <table class="table table-striped">
-    <thead class="thead-dark">
-      <tr>
-          <th>Nombre</th>
-          <th>Precio</th>
-          <th> Cantidad</th>
-      </tr>
-    </thead>
-    <tbody id="tcuerpo">
-    </tbody>
-    <tfoot class="thead-dark">
-        <tr>
-          <th>Total:</th>
-          <th></th>
-          <th id="total"></th>
-          <th></th>
-        </tr>
-    </tfoot>
-  </table>
-</div>
-<div class="container m-1">
-  <button id="vaciar" class="btn btn-primary">
-      Vaciar
-  </button>
-</div>
 
   <!-- #contacto -->
   
