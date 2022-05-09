@@ -19,10 +19,10 @@ const agregarClienteLista = (persona) => {
     clientes.push(persona)
 }
 
-const cliente1 = new Persona("Maria", "Zucchi", 52, "marita@gmail.com", 145145, 3415898989);
+/*const cliente1 = new Persona("Maria", "Zucchi", 52, "marita@gmail.com", 145145, 3415898989);
 agregarClienteLista(cliente1);
 const cliente2 = new Persona("Juan", "Zucchi", 45, "juancito@gmail.com", 222222, 3413565656);
-agregarClienteLista(cliente2);
+agregarClienteLista(cliente2);*/
 
 
 const verListaClientes = () => {
@@ -59,9 +59,7 @@ form.addEventListener("submit", e => {
     
 })
 
-const boton = document.getElementById("boton");
-const botoncin = document.getElementById("botoncin");
-const botonson = document.getElementById("botonson");
+
 
 const usuario = []
 
@@ -108,6 +106,10 @@ iniciar.addEventListener("submit", e => {
     guardar(recordar);
 })
 
+const boton = document.getElementById("boton");
+const este = document.getElementById("este");
+const botonson = document.getElementById("botonson");
+const botonsin = document.getElementById("botonsin");
 
 function guardar(item){
     if(usuario.find(i => i.mail === item.mail)&&usuario.find(i => i.contraseña === item.contraseña)){
@@ -116,10 +118,10 @@ function guardar(item){
            if(item.mail === clientesJS[i].mail){
             boton.innerText = ` ${clientesJS[i].nombre}`;
             botonson.innerText= " ";
-            botoncin.innerText=" ";
+            botonsin.innerText=" ";
             const boti = document.createElement("div");
-            boti.innerHTML = `<li id="botoncin"><button type="button" class="dropdown-item" href="#">Cerrar sesion</button></li>`;
-            botoncin.append(boti);
+            boti.innerHTML = `<li id="botonsin"><button id="botoncerrar" type="submit" class="dropdown-item" href="#">Cerrar sesion</button></li>`;
+            botonsin.append(boti);
             }
         }
      }else{
@@ -130,6 +132,28 @@ function guardar(item){
      }
 }
 
+const asd = document.getElementById("botoncerrar");
+
+if(usuario.length===0){
+    asd.onclick = () => {
+        swal ({
+            title: "Seguro que desea cerrar sesion?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            usuario = []
+            localStorage.setItem("usuario", JSON.stringify(usuario))
+            boton.innerText = " ";
+            
+        } else {
+            swal("No fue elimado");
+        }
+    });
+    
+};}
 console.log(verListaClientes());
 
 //PRODUCTOS
