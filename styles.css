@@ -170,3 +170,26 @@ img.card-img-top {
     color: whitesmoke!important;
     text-align: left;
 }
+
+
+/* Marcas destacadas  */
+
+
+.marcas-destacadas{
+    height: 350px;
+    background-color: #222;
+}
+.marcas-destacadas h3{
+    color: whitesmoke;
+    padding-top: 60px;
+}
+
+.marcas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imagen-marcas{
+    max-height: 100px;
+    width: auto;
+}
