@@ -19,9 +19,9 @@ const agregarClienteLista = (persona) => {
     clientes.push(persona)
 }
 
-const cliente1 = new Persona("Maria", "Zucchi", 52, "marita@gmail.com");
+const cliente1 = new Persona("Maria", "Zucchi", 52, "marita@gmail.com", 145145, 3415898989);
 agregarClienteLista(cliente1);
-const cliente2 = new Persona("Juan", "Zucchi", 45, "juancito@gmail.com");
+const cliente2 = new Persona("Juan", "Zucchi", 45, "juancito@gmail.com", 222222, 3413565656);
 agregarClienteLista(cliente2);
 
 
@@ -60,6 +60,9 @@ form.addEventListener("submit", e => {
 })
 
 const boton = document.getElementById("boton");
+const botoncin = document.getElementById("botoncin");
+const botonson = document.getElementById("botonson");
+
 const usuario = []
 
 let clientesJS = JSON.parse(localStorage.getItem('clientes')) || []
@@ -112,10 +115,18 @@ function guardar(item){
         for (let i = 0; i < clientesJS.length; i++){
            if(item.mail === clientesJS[i].mail){
             boton.innerText = ` ${clientesJS[i].nombre}`;
+            botonson.innerText= " ";
+            botoncin.innerText=" ";
+            const boti = document.createElement("div");
+            boti.innerHTML = `<li id="botoncin"><button type="button" class="dropdown-item" href="#">Cerrar sesion</button></li>`;
+            botoncin.append(boti);
             }
         }
      }else{
-         console.log("ese usuario todavia no fue registrado")
+         swal ({
+                title: "Ese usuario todavia no fue registrado",
+                icon: "warning"
+            })
      }
 }
 
