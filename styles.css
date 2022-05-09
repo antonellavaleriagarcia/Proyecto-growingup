@@ -70,16 +70,43 @@
 
 .back-tienda{
     background-image: url(img/back-tienda.png);
-    height: auto;
-    background-position: bottom;
+    height: 100%;
+    background-attachment: fixed;
+}
+
+.card-nosotros{
+    background-color: #ffffff94;
+}
+
+
+.footer-growing{
+    position: relative;
+    height: 10vh;
+    bottom: 0;
+}
+
+.back-nosotros {
+    background-image: url(img/plantita.jpg);
+    background-position: 100%;
+    background-attachment: fixed;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-tienda{
+    border-top:3px solid #00ffb2;
 }
 
 .back-blog{
     padding-top: 60px;
     padding-bottom: 60px;
-    background: linear-gradient(180deg, #212529, #00ffb2);
+    background: linear-gradient(180deg, #134435, #08a373);
     height: auto;
-    background-position: bottom;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .news-card{
     padding-bottom: 30px;
@@ -98,15 +125,32 @@
     margin-bottom: 30px;
 }
 .back-header-blog{
-    font-size: 22px;
+    font-size: 40px;
     color: white;
     font-weight: bolder;
     background-color: #00b3d3;
-    padding-top: 30px;
-    padding-bottom: 20px;
-    height: 100px;
+    padding-top: 18px;
+    height: 110px;
+    vertical-align: center;
     text-align: center;
-    display: absolute;
+    background-image: url(img/chala.jpg);
+}
+
+.back-header-tienda {
+    font-size: 40px;
+    color: white;
+    font-weight: bolder;
+    background-color: #00b3d3a7;
+    padding-top: 18px;
+    
+    height: 110px;
+    background-position-y: center;
+    background-image: url(img/back-tienda.png);
+    text-align: center;
+}
+
+.nosotros{
+    overflow: hidden;
 }
 
 img.card-img-top {
@@ -120,4 +164,9 @@ img.card-img-top {
 }
 .compras {
     margin-right: 20px;
+}
+.footer-growing-text{
+    font-size: 10px;
+    color: whitesmoke!important;
+    text-align: left;
 }
