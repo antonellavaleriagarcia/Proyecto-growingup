@@ -59,9 +59,12 @@
                 </tfoot>
               </table>
             </div>
-            <div class="container m-1">
+            <div class="container d-flex" style="justify-content: flex-end;">
               <button id="vaciar" class="btn btn-primary">
                   Vaciar
+              </button>
+              <button id="comprar" class="btn btn-primary" style="margin-left: 10px">
+                Comprar
               </button>
             </div>
           </div>
@@ -71,8 +74,9 @@
             <i class="fa-solid fa-user" id="boton"></i>
           </button>
           <ul class="dropdown-menu" style="left:unset; right: 0;" aria-labelledby="dropdownMenuButton1">
-            <li id="botoncin"><button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item" href="#">Crear cuenta</button></li>
+            <li id="botonsin"><button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item" href="#">Crear cuenta</button></li>
             <li id="botonson"><button type="button"  data-bs-toggle="modal" data-bs-target="#modalIniciarSesion" class="dropdown-item" href="#">Iniciar Sesión</button></li>
+            <li id="este"></li>
           </ul>
         </div>
         <!-- Modal Iniciar Sesión-->
