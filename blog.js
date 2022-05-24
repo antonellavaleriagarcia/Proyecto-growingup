@@ -3,7 +3,7 @@
 let noticias = document.getElementById("noticias");
 let datos;
 
-fetch("http://localhost:5500/datos.json")
+fetch("https://antonellavaleriagarcia.github.io/Proyecto-growingup/datos.json")
     .then((res) => res.json())
     .then((data)=> {
         setTimeout(()=>{
